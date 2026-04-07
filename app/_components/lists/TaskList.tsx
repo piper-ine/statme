@@ -5,12 +5,12 @@ interface Task {
 }
 
 interface TaskListProps {
-  category?: string; // Пропс категории
-  tasks?: Task[];    // Данные задач (опционально)
+  category?: string; 
+  tasks?: Task[];    
 }
 
 export default function TaskList({ 
-  category = "General", // Дефолтное значение
+  category = "General", 
   tasks = [
     { id: 1, title: "Design System Update", status: "In Progress" },
     { id: 2, title: "Analytics Dashboard", status: "Done" },
@@ -20,7 +20,7 @@ export default function TaskList({
 }: TaskListProps) {
   return (
     <div className="w-full">
-      {/* Заголовок с категорией */}
+
       <div className="flex items-center justify-between mb-4 px-2">
         <h2 className="text-zinc-100 font-semibold text-lg">{category} Tasks</h2>
         <span className="text-xs text-zinc-500 bg-zinc-800 px-2 py-1 rounded-md">
@@ -28,7 +28,6 @@ export default function TaskList({
         </span>
       </div>
 
-      {/* Список задач */}
       <ul className="grid grid-cols-1 gap-3">
         {tasks.map((task) => (
           <li 
