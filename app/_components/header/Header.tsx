@@ -6,9 +6,10 @@ interface HeaderProps {
 
 export default function Header({ activePage }: HeaderProps) {
   const navItems = [
-    { name: 'Dashboard', href: '/' },
+    { name: 'Dashboard', href: '/dashboard' },
     { name: 'Tasks', href: '/tasks' },
     { name: 'Settings', href: '/settings' },
+    { name: 'Liderboard', href: '/liderboard' },
     { name: 'Profile', href: '/profile' },
   ] as const;
 
