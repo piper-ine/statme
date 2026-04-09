@@ -18,6 +18,7 @@ model User{
   name String
   email String @unique
   password String 
+  todos Todo[]
 }
 
 model Todo {
@@ -25,10 +26,13 @@ model Todo {
   title       String
   description String?
   status      Boolean       @default(false)
-  deadline    DateTime      @default(now())
-  color String @default("#5e5d5d") // HEX цвет
+  deadline    DateTime?     // ← убрали default
+  color       String        @default("#5e5d5d")
   categoryId  Int?
   category    TodoCategory? @relation(fields: [categoryId], references: [id])
+
+  userId Int
+  user   User @relation(fields: [userId], references: [id])
 }
 
 model TodoCategory {
