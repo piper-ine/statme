@@ -28,17 +28,6 @@ model Todo {
   status      Boolean       @default(false)
   deadline    DateTime?     // ← убрали default
   color       String        @default("#5e5d5d")
-  categoryId  Int?
-  category    TodoCategory? @relation(fields: [categoryId], references: [id])
-
   userId Int
   user   User @relation(fields: [userId], references: [id])
 }
-
-model TodoCategory {
-  id    Int    @id @default(autoincrement())
-  title String
-
-  todos Todo[]
-}
-

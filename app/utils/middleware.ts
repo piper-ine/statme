@@ -2,7 +2,9 @@ import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 import jwt from "jsonwebtoken";
 
-export function checkAuth(req: NextRequest) {
+const JWT_SECRET = process.env.JWT_SECRET!;
+
+export function middleware(req: NextRequest) {
   const token = req.cookies.get("token")?.value;
 
   if (!token) {
@@ -10,7 +12,7 @@ export function checkAuth(req: NextRequest) {
   }
 
   try {
-    jwt.verify(token, process.env.JWT_SECRET!);
+    jwt.verify(token, JWT_SECRET);
     return NextResponse.next();
   } catch {
     return NextResponse.redirect(new URL("/login", req.url));
@@ -18,5 +20,5 @@ export function checkAuth(req: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/dashboard/:path*"], // защищённые роуты
+  matcher: ["/dashboard/:path*"],
 };
